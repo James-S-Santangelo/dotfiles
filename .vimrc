@@ -12,11 +12,12 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'mileszs/ack.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-
+Plugin 'https://github.com/snakemake/snakemake.git', {'rtp': 'misc/vim/'}
 Plugin 'The-NERD-Commenter'
 
 call vundle#end()
 filetype plugin indent on
+filetype plugin on
 
 " Use 'ag' (i.e., the silver searcher) if available on system
 if executable('ag')
@@ -63,6 +64,13 @@ nnoremap <leader>u :GundoToggle<CR>
 nnoremap <leader>nt :NERDTreeToggle<CR>
 
 " inoremap jk <esc>
+let g:NERDSpaceDelims = 1
+let g:NERDCustomDelimiters = { 'snakemake': { 'left': '#','right': '' } }
+
+au BufNewFile,BufRead Snakefile set syntax=snakemake 
+au BufNewFile,BufRead *.smk set syntax=snakemake
+au BufNewFile,BufRead Snakefile set filetype=snakemake
+au BufNewFile,BufRead *.smk set filetype=snakemake
 
 "au BufNewFile,BufRead *.py
     "\ syntax on |
