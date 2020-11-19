@@ -228,7 +228,7 @@ then
     export LC_ALL="en_US.UTF-8"
 else
     alias sherlock='kinit -R; ssh -KY sherlock.stanford.edu'
-    function fromsherlock(){
+    function fromhpcnode(){
     scp -r "santang3@hpcnode1.utm.utoronto.ca:${1}" .
     }
 fi
