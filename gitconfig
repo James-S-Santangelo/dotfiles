@@ -1,3 +1,5 @@
+[credential.helper]
+    store
 [user]
   name = James Santangelo 
   email = james.santangelo37@@gmail.com
