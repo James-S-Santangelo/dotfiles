@@ -158,6 +158,10 @@ if [[ ${platform} == 'mac' ]]; then
     export PATH="/usr/local/sbin:$PATH"
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
+    alias hpcnode="ssh santang3@hpcnode1.utm.utoronto.ca"
+    alias calculon="ssh santang3@calculon.utm.utoronto.ca"
+    alias niagara="ssh santang3@niagara.scinet.utoronto.ca"
+
 ########################################################
 #|## Linux                                             #
 ########################################################
