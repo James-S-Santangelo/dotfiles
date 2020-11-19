@@ -1,5 +1,5 @@
-[credential.helper]
-    store
+[credential]
+	helper = store
 [user]
   name = James Santangelo 
   email = james.santangelo37@@gmail.com
@@ -37,4 +37,3 @@
   man = help
   bad = bisect bad
   good = bisect good
-
