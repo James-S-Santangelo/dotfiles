@@ -12,7 +12,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'mileszs/ack.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'The-NERD-Commenter'
 
 call vundle#end()
@@ -61,6 +61,11 @@ nnoremap ^ <nop>
 nnoremap gV `[v`]
 nnoremap <leader>u :GundoToggle<CR>
 nnoremap <leader>nt :NERDTreeToggle<CR>
+
+au BufNewFile,BufRead Snakefile set syntax=snakemake
+au BufNewFile,BufRead *.rules set syntax=snakemake
+au BufNewFile,BufRead *.smk set syntax=snakemake
+au BufNewFile,BufRead *.snake set syntax=snakemake
 
 " inoremap jk <esc>
 
