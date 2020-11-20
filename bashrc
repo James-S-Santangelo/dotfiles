@@ -190,6 +190,11 @@ else
     eval `dircolors -b`
 fi
 
+if [ -d "${HOME}/miniconda3"  ]
+then
+    . ${HOME}/miniconda3/etc/profile.d/conda.sh
+fi
+
 ########################################################
 #|## Environment                                       #
 ########################################################
@@ -243,3 +248,5 @@ alias vim="vim -O"
 pman() { # view man pages the fancy way
   tmp=$(mktemp); man -t $1  | ps2pdf - ${tmp} && xpdf -z 'width' -g 1280x1000 ${tmp} && rm ${tmp};
 };
+
+
