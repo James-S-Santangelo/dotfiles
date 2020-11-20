@@ -54,7 +54,7 @@ if [[ ${platform} == 'mac' ]]; then
 ########################################################
 #|## Linux                                             #
 ########################################################
-elif [[ ${platform} == 'linux' ]]; then
+#elif [[ ${platform} == 'linux' ]]; then
     export PATH=$HOME/bin:$PATH
     export PATH=$HOME/.local/bin:$PATH
 fi
@@ -73,7 +73,7 @@ then
     export CXX=/home/santang3/gcc9.3.0/bin/g++
     
     # PATH
-    export PATH=/opt/bwa/0.7.17:/opt/fastpmaster/0.20.1:/opt/fastqc/0.11.9:/opt/gatk/4.1.7.0:/opt/qualimap/2.2.1:/opt/samtools/1.10/bin:/opt/bcftools/1.10.2/bin:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin               
+    #export PATH=$PATH:/opt/bwa/0.7.17:/opt/fastpmaster/0.20.1:/opt/fastqc/0.11.9:/opt/gatk/4.1.7.0:/opt/qualimap/2.2.1:/opt/samtools/1.10/bin:/opt/bcftools/1.10.2/bin:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin               
     export PATH=$HOME/bin/cmake/bin:$PATH
     export PATH=$HOME/gcc9.3.0/bin:$PATH
 	
@@ -173,7 +173,7 @@ export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\]:\w\[\033[31m\]$(parse_git_branch
     # else
         # export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\]:\w\[\033[31m\]\[\033[01;34m\]$\[\033[00m\] '
     # fi
-# fi
+ #fi
 
 # set bash to vi mode
 # (hit ESC for command mode/
@@ -213,7 +213,6 @@ alias j='jobs'
 alias g='gthumb'
 alias d='date'
 alias v='vim'
-alias rl='readlink -f'
 alias eb='vim ~/.bashrc'
 alias kk='kill %'
 
@@ -244,5 +243,3 @@ alias vim="vim -O"
 pman() { # view man pages the fancy way
   tmp=$(mktemp); man -t $1  | ps2pdf - ${tmp} && xpdf -z 'width' -g 1280x1000 ${tmp} && rm ${tmp};
 };
-
-
