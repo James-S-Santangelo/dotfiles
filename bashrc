@@ -127,7 +127,12 @@ fi
 ########################################################
 if [[ "x$(hostname)" = xnia* ]]
 then
-    ssh nia-login01
+    if  [ "x$(hostname)" = "xnia-login01.scinet.local"  ]
+    then
+        :
+    else
+        ssh nia-login01
+    fi
 else
     function fromniagara(){
     scp -r "santang3@niagara.scinet.utoronto.ca:${1}" .
