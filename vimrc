@@ -18,6 +18,9 @@ call vundle#end()
 filetype plugin indent on
 filetype plugin on
 
+"Get the 2-space YAML as the default when hit carriage return after the colon
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
 " Use 'ag' (i.e., the silver searcher) if available on system
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
