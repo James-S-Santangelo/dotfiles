@@ -11,7 +11,6 @@ Plugin 'preservim/nerdtree'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'mileszs/ack.vim'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'The-NERD-Commenter'
 
