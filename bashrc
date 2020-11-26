@@ -50,6 +50,7 @@ if [[ ${platform} == 'mac' ]]; then
     alias hpcnode="ssh santang3@hpcnode1.utm.utoronto.ca"
     alias calculon="ssh santang3@calculon.utm.utoronto.ca"
     alias niagara="ssh santang3@niagara.scinet.utoronto.ca"
+    alias graham="ssh santang3@graham.computecanada.ca"
 
 ########################################################
 #|## Linux                                             #
@@ -139,6 +140,22 @@ else
     }
 fi
 
+########################################################
+#|## graham                                            #
+########################################################
+if [[ "x$(hostname)" = xgra* ]]
+then
+    if  [ "x$(hostname)" = "xgra-login1"  ]
+    then
+        :
+    else
+        ssh gra-login1
+    fi
+else
+    function fromgraham(){
+    scp -r "santang3@graham.computecanada.ca:${1}" .
+    }
+fi
 ########################################################
 #|# General                                            #
 ########################################################
