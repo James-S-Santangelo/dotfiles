@@ -150,7 +150,6 @@ then
         :
     else
         ssh gra-login1
-        unset PYTHONPATH
     fi
 else
     function fromgraham(){
