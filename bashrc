@@ -58,6 +58,8 @@ if [[ ${platform} == 'mac' ]]; then
 #elif [[ ${platform} == 'linux' ]]; then
     export PATH=$HOME/bin:$PATH
     export PATH=$HOME/.local/bin:$PATH
+
+    alias spp='sacct -u santang3 --format="JobID,JobName,NNodes,NTasks,NCPUS,Elapsed,CPUTime,ReqMem,MaxRSS,ExitCode,State"'
 fi
 
 ########################################################
