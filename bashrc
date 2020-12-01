@@ -60,6 +60,14 @@ elif [[ ${platform} == 'linux' ]]; then
     export PATH=$HOME/.local/bin:$PATH
 
     alias sp='sacct -u santang3 --format="JobID,JobName,NNodes,NTasks,NCPUS,Elapsed,CPUTime,ReqMem,MaxRSS,ExitCode,State"'
+    alias scancall="squeue -u santang3 | awk '{print $1}' | xargs -n1 scancel"
+
+    spmem(){
+       sp | grep -A 1 "${1}" | grep 'batch' | grep 'COMP' | sort -n -k9,9 | less -S
+    }
+    sptime(){
+       sp | grep -A 1 "${1}" | grep 'batch' | grep 'COMP' | sort -k6,6 | less -S
+    }
 fi
 
 ########################################################
