@@ -59,7 +59,7 @@ elif [[ ${platform} == 'linux' ]]; then
     export PATH=$HOME/bin:$PATH
     export PATH=$HOME/.local/bin:$PATH
 
-    alias sp='sacct -u santang3 --format="JobID,JobName,NNodes,NTasks,NCPUS,Elapsed,CPUTime,ReqMem,MaxRSS,ExitCode,State"'
+    alias sp='sacct -S 2020-11-01 -u santang3 --format="JobID,JobName%50,NNodes,NTasks,NCPUS,Elapsed,CPUTime,ReqMem,MaxRSS,ExitCode,State"'
     alias scancall='sq | awk "{print $1}" | xargs -n1 scancel'
 
     stall(){
