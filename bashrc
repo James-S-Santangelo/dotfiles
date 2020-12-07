@@ -257,7 +257,7 @@ alias v='vim'
 alias eb='vim ~/.bashrc'
 alias kk='kill %'
 
-alias top='htop -d 1'
+# alias top='htop -d 1'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
