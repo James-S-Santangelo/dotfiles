@@ -51,6 +51,8 @@ if [[ ${platform} == 'mac' ]]; then
     alias calculon="ssh santang3@calculon.utm.utoronto.ca"
     alias niagara="ssh santang3@niagara.scinet.utoronto.ca"
     alias graham="ssh santang3@graham.computecanada.ca"
+    alias oc-utm="sudo openconnect -v --authgroup 'UofT Default' --user=santang3 general.vpn.utoronto.ca"
+
 
     ws-hpc(){
         ssh -N -f -L localhost:$1:localhost:$1 santang3@hpcnode1.utm.utoronto.ca
@@ -58,6 +60,7 @@ if [[ ${platform} == 'mac' ]]; then
     ws-gra(){
         ssh -N -f -L localhost:$1:localhost:$1 santang3@graham.computecanada.ca
     }
+
 
 ########################################################
 #|## Linux                                             #
@@ -124,7 +127,6 @@ then
     # Random
     export LC_ALL="en_US.UTF-8"
 else
-    alias sherlock='kinit -R; ssh -KY sherlock.stanford.edu'
     function fromhpcnode(){
     scp -r "santang3@hpcnode1.utm.utoronto.ca:${1}" .
     }
