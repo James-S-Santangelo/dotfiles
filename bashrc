@@ -235,9 +235,16 @@ else
     eval `dircolors -b`
 fi
 
+# Make conda available if installed
 if [ -d "${HOME}/miniconda3"  ]
 then
     . ${HOME}/miniconda3/etc/profile.d/conda.sh
+fi
+
+# Install Vundle for Vim if not installed
+if ! [ -f "${HOME}/.vim/bundle/Vundle.vim"  ]
+then
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 
 ########################################################
