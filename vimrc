@@ -74,6 +74,8 @@ au BufNewFile,BufRead *.smk set syntax=snakemake
 au BufNewFile,BufRead Snakefile set filetype=snakemake
 au BufNewFile,BufRead *.smk set filetype=snakemake
 
+au BufNewFile,BufRead Singularity* set syntax=singularity
+au BufNewFile,BufRead Singularity* set filetype=singularity
 "au BufNewFile,BufRead *.py
     "\ syntax on |
     "\ set softtabstop=4 |

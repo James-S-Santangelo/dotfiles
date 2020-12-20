@@ -65,9 +65,23 @@ if [[ ${platform} == 'mac' ]]; then
 ########################################################
 #|## Linux                                             #
 ########################################################
-#elif [[ ${platform} == 'linux' ]]; then
+elif [[ ${platform} == 'linux' ]]; then
     export PATH=$HOME/bin:$PATH
     export PATH=$HOME/.local/bin:$PATH
+
+    alias sp='sacct -S 2020-11-01 -u santang3 --format="JobID,JobName%50,NNodes,NTasks,NCPUS,Elapsed,CPUTime,ReqMem,MaxRSS,ExitCode,State"'
+    alias scancall='sq | awk "{print $1}" | xargs -n1 scancel'
+
+    stall(){
+        JOBS=$(sq | grep 'R' | awk -vORS=, '{print $1}')
+        sstat $JOBS --format="JobID,NTasks,MaxRSS,MaxVMSize,AveCPU" | sort -n -k3,3
+    }
+    spmem(){
+       sp | grep -A 1 "${1}" | grep 'batch' | grep 'COMP' | sort -n -k9,9 | less -S
+    }
+    sptime(){
+       sp | grep -A 1 "${1}" | grep 'batch' | grep 'COMP' | sort -k6,6 | less -S
+    }
 fi
 
 ########################################################
@@ -252,7 +266,7 @@ alias v='vim'
 alias eb='vim ~/.bashrc'
 alias kk='kill %'
 
-alias top='htop -d 1'
+# alias top='htop -d 1'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
