@@ -52,6 +52,13 @@ if [[ ${platform} == 'mac' ]]; then
     alias niagara="ssh santang3@niagara.scinet.utoronto.ca"
     alias graham="ssh santang3@graham.computecanada.ca"
 
+    ws-hpc(){
+        ssh -N -f -L localhost:$1:localhost:$1 santang3@hpcnode1.utm.utoronto.ca
+    }
+    ws-gra(){
+        ssh -N -f -L localhost:$1:localhost:$1 santang3@graham.computecanada.ca
+    }
+
 ########################################################
 #|## Linux                                             #
 ########################################################
