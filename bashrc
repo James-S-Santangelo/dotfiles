@@ -100,7 +100,6 @@ then
     # PATH
     #export PATH=$PATH:/opt/bwa/0.7.17:/opt/fastpmaster/0.20.1:/opt/fastqc/0.11.9:/opt/gatk/4.1.7.0:/opt/qualimap/2.2.1:/opt/samtools/1.10/bin:/opt/bcftools/1.10.2/bin:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin               
     export PATH=$HOME/bin/cmake/bin:$PATH
-    export PATH=$HOME/gcc9.3.0/bin:$PATH
 	
     # LD_LIBRARY_PATH
     export LD_LIBRARY_PATH="${HOME}/gcc9.3.0/lib:${LD_LIBRARY_PATH}"
