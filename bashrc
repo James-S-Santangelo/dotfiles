@@ -51,7 +51,7 @@ if [[ ${platform} == 'mac' ]]; then
     alias calculon="ssh santang3@calculon.utm.utoronto.ca"
     alias niagara="ssh santang3@niagara.scinet.utoronto.ca"
     alias graham="ssh santang3@graham.computecanada.ca"
-    alias oc-utm="sudo openconnect -v --authgroup 'UofT Default' --user=santang3 general.vpn.utoronto.ca"
+    alias oc-utm="sudo openconnect --authgroup 'UofT Default' --user=santang3 general.vpn.utoronto.ca"
 
 
     ws-hpc(){
