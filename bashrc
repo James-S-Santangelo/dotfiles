@@ -58,7 +58,7 @@ if [[ ${platform} == 'mac' ]]; then
         ssh -N -f -L localhost:$1:localhost:$1 santang3@hpcnode1.utm.utoronto.ca
     }
     ws-gra(){
-        ssh -N -f -L localhost:$1:localhost:$1 santang3@graham.computecanada.ca
+        ssh -N -L localhost:$1:localhost:$1 santang3@graham.computecanada.ca
     }
 
 
@@ -301,3 +301,4 @@ pman() { # view man pages the fancy way
 };
 
 
+[ -f "/Users/jamessantangelo/.ghcup/env" ] && source "/Users/jamessantangelo/.ghcup/env" # ghcup-env
