@@ -47,10 +47,10 @@ if [[ ${platform} == 'mac' ]]; then
     export PATH="/usr/local/sbin:$PATH"
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
-    alias hpcnode="ssh santang3@hpcnode1.utm.utoronto.ca"
+    alias hpcnode="ssh -i ~/.ssh/hpcnode santang3@hpcnode1.utm.utoronto.ca"
     alias calculon="ssh santang3@calculon.utm.utoronto.ca"
     alias niagara="ssh santang3@niagara.scinet.utoronto.ca"
-    alias graham="ssh santang3@graham.computecanada.ca"
+    alias graham="ssh -i ~/.ssh/graham santang3@graham.computecanada.ca"
     alias oc-utm="sudo openconnect --authgroup 'UofT Default' --user=santang3 general.vpn.utoronto.ca"
 
 
