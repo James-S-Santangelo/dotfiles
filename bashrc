@@ -55,7 +55,7 @@ if [[ ${platform} == 'mac' ]]; then
 
 
     ws-hpc(){
-        ssh -N -f -L localhost:$1:localhost:$1 santang3@hpcnode1.utm.utoronto.ca
+        ssh -i ~/.ssh/hpcnode -N -f -L localhost:$1:localhost:$1 santang3@hpcnode1.utm.utoronto.ca
     }
     ws-gra(){
         ssh -N -L localhost:$1:localhost:$1 santang3@graham.computecanada.ca
