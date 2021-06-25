@@ -113,13 +113,13 @@ then
 else
     function fromhpcnode(){
     scp -r "santang3@hpcnode1.utm.utoronto.ca:${1}" .
+    }
     
     # Make conda available if manually installed
     if [ -d "${HOME}/miniconda3"  ]
     then
         . ${HOME}/miniconda3/etc/profile.d/conda.sh 
     fi
-    }
 fi
 
 ########################################################
