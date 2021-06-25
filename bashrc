@@ -46,6 +46,7 @@ fi
 if [[ ${platform} == 'mac' ]]; then
     export PATH="/usr/local/sbin:$PATH"
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    export PATH="$PATH:/Users/jamessantangelo/Library/Python/2.7/bin"
 
     alias hpcnode="ssh -i ~/.ssh/hpcnode santang3@hpcnode1.utm.utoronto.ca"
     alias calculon="ssh santang3@calculon.utm.utoronto.ca"
@@ -58,7 +59,7 @@ if [[ ${platform} == 'mac' ]]; then
         ssh -i ~/.ssh/hpcnode -N -f -L localhost:$1:localhost:$1 santang3@hpcnode1.utm.utoronto.ca
     }
     ws-gra(){
-        ssh -N -L localhost:$1:localhost:$1 santang3@graham.computecanada.ca
+        ssh -i ~/.ssh/graham -N -f -L localhost:$1:localhost:$1 santang3@graham.computecanada.ca
     }
 
 
