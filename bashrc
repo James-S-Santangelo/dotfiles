@@ -46,19 +46,20 @@ fi
 if [[ ${platform} == 'mac' ]]; then
     export PATH="/usr/local/sbin:$PATH"
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    export PATH="$PATH:/Users/jamessantangelo/Library/Python/2.7/bin"
 
-    alias hpcnode="ssh santang3@hpcnode1.utm.utoronto.ca"
+    alias hpcnode="ssh -i ~/.ssh/hpcnode santang3@hpcnode1.utm.utoronto.ca"
     alias calculon="ssh santang3@calculon.utm.utoronto.ca"
     alias niagara="ssh santang3@niagara.scinet.utoronto.ca"
-    alias graham="ssh santang3@graham.computecanada.ca"
-    alias oc-utm="sudo openconnect -v --authgroup 'UofT Default' --user=santang3 general.vpn.utoronto.ca"
+    alias graham="ssh -i ~/.ssh/graham santang3@graham.computecanada.ca"
+    alias oc-utm="sudo openconnect --authgroup 'UofT Default' --user=santang3 general.vpn.utoronto.ca"
 
 
     ws-hpc(){
-        ssh -N -f -L localhost:$1:localhost:$1 santang3@hpcnode1.utm.utoronto.ca
+        ssh -i ~/.ssh/hpcnode -N -f -L localhost:$1:localhost:$1 santang3@hpcnode1.utm.utoronto.ca
     }
     ws-gra(){
-        ssh -N -f -L localhost:$1:localhost:$1 santang3@graham.computecanada.ca
+        ssh -i ~/.ssh/graham -N -f -L localhost:$1:localhost:$1 santang3@graham.computecanada.ca
     }
 
 
@@ -92,50 +93,20 @@ fi
 ########################################################
 if [ "x$(hostname)" = "xhpcnode1.utm.utoronto.ca" ]
 then
-
-    # Compilers
-    export CC=/home/santang3/gcc9.3.0/bin/gcc
-    export CXX=/home/santang3/gcc9.3.0/bin/g++
-    
-    # PATH
-    #export PATH=$PATH:/opt/bwa/0.7.17:/opt/fastpmaster/0.20.1:/opt/fastqc/0.11.9:/opt/gatk/4.1.7.0:/opt/qualimap/2.2.1:/opt/samtools/1.10/bin:/opt/bcftools/1.10.2/bin:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin               
-    export PATH=$HOME/bin/cmake/bin:$PATH
-	
-    # LD_LIBRARY_PATH
-    export LD_LIBRARY_PATH="${HOME}/gcc9.3.0/lib:${LD_LIBRARY_PATH}"
-	export LD_LIBRARY_PATH="${HOME}/gcc9.3.0/lib64:${LD_LIBRARY_PATH}"
-	export LD_LIBRARY_PATH="${HOME}/local/zlib-1.2.11/lib:${LD_LIBRARY_PATH}"
-	export LD_LIBRARY_PATH="${HOME}/local/openssl/lib:${LD_LIBRARY_PATH}"
-	export LD_LIBRARY_PATH="${HOME}/local/curl-7.69.1/lib:${LD_LIBRARY_PATH}"
-	export LD_LIBRARY_PATH="${HOME}/local/htslib-1.10.2/lib:${LD_LIBRARY_PATH}"
-	export LD_LIBRARY_PATH="${HOME}/local/gsl-2.1/lib:${LD_LIBRARY_PATH}"
-	export LD_LIBRARY_PATH="${HOME}/local/python3.7.7/lib:${LD_LIBRARY_PATH}"
-	export LD_LIBRARY_PATH="${HOME}/local/libffi-3.2.1/lib:${LD_LIBRARY_PATH}"
-	export LD_LIBRARY_PATH="${HOME}/local/libffi-3.2.1/lib64:${LD_LIBRARY_PATH}"
-	
-    # PKG_CONFIG_PATH
-    export PKG_CONFIG_PATH="${HOME}/local/zlib-1.2.11/lib/pkgconfig:${PKG_CONFIG_PATH}"
-	export PKG_CONFIG_PATH="${HOME}/local/curl-7.69.1/lib/pkgconfig:${PKG_CONFIG_PATH}"
-	export PKG_CONFIG_PATH="${HOME}/local/htslib-1.10.2/lib/pkgconfig:${PKG_CONFIG_PATH}"
-	export PKG_CONFIG_PATH="${HOME}/local/gsl-2.1/lib/pkgconfig:${PKG_CONFIG_PATH}"
-	export PKG_CONFIG_PATH="${HOME}/local/python3.7.7/lib/pkgconfig:${PKG_CONFIG_PATH}"
-	export PKG_CONFIG_PATH="${HOME}/local/libffi-3.2.1/lib/pkgconfig:${PKG_CONFIG_PATH}"
-	
-    # CPPFLAGS
-    export CPPFLAGS="-I/home/santang3/local/zlib-1.2.11/include"
-	export CPPFLAGS="-I/home/santang3/local/curl-7.69.1/include"
-	export CPPFLAGS="-I/home/santang3/local/htslib-1.10.2/include"
-	export CPPFLAGS="-I/home/santang3/local/gsl-2.1/include"
-	export CPPFLAGS="-I/home/santang3/local/python3.7.7/include"
-	export LDFLAGS="-L/home/santang3/local/zlib-1.2.11/lib -Wl,-rpath,/home/santang3/local/htslib-10.1.2/lib"
-	
-	# LDFLAGS
-	export LDFLAGS="-L/home/santang3/local/openssl/lib -Wl,-rpath,/home/santang3/local/openssl/lib"
-	export LDFLAGS="-L/home/santang3/local/htslib-10.1.2/lib -Wl,-rpath,/home/santang3/local/htslib-1.10.2/lib"
-	export LDFLAGS="-L/home/santang3/local/gsl-2.1/lib -Wl,-rpath,/home/santang3/local/gsl-2.1/lib"
-	export LDFLAGS="-L/home/santang3/local/python3.7.7/lib -Wl,-rpath,/home/santang3/local/python3.7.7/lib"
-	export LDFLAGS="-L/home/santang3/local/libffi-3.2.1/lib -Wl,-rpath,/home/santang3/local/libffi-3.2.1/lib"
-	export LDFLAGS="-L/home/santang3/local/libffi-3.2.1/lib64 -Wl,-rpath,/home/santang3/local/libffi-3.2.1/lib64"
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/opt/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+            . "/opt/anaconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/opt/anaconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
     
     # Random
     export LC_ALL="en_US.UTF-8"
@@ -143,6 +114,12 @@ else
     function fromhpcnode(){
     scp -r "santang3@hpcnode1.utm.utoronto.ca:${1}" .
     }
+    
+    # Make conda available if manually installed
+    if [ -d "${HOME}/miniconda3"  ]
+    then
+        . ${HOME}/miniconda3/etc/profile.d/conda.sh 
+    fi
 fi
 
 ########################################################
@@ -234,16 +211,12 @@ else
     eval `dircolors -b`
 fi
 
-# Make conda available if installed
-if [ -d "${HOME}/miniconda3"  ]
-then
-    . ${HOME}/miniconda3/etc/profile.d/conda.sh
-fi
 
 # Install Vundle for Vim if not installed
 if ! [ -d "${HOME}/.vim/bundle/Vundle.vim"  ]
 then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    vim +PluginInstall +qall
 fi
 
 ########################################################
@@ -301,3 +274,4 @@ pman() { # view man pages the fancy way
 };
 
 
+[ -f "/Users/jamessantangelo/.ghcup/env" ] && source "/Users/jamessantangelo/.ghcup/env" # ghcup-env
