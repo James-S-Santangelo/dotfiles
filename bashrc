@@ -70,12 +70,14 @@ elif [[ ${platform} == 'linux' ]]; then
     export PATH=$HOME/bin:$PATH
     export PATH=$HOME/.local/bin:$PATH
 
-    alias sp='sacct -u santang3 --format="JobID,JobName%50,NNodes,NTasks,NCPUS,Elapsed,CPUTime,ReqMem,MaxRSS,ExitCode,State"'
-    alias scancall='sq | awk "{print $1}" | tail -n +2 | xargs scancel'
-
+    alias sp="sacct -u santang3 --format='JobID,JobName%50,NNodes,NTasks,NCPUS,Elapsed,CPUTime,ReqMem,MaxRSS,ExitCode,State'"
     stall(){
-        JOBS=$(sq | grep 'R' | awk -vORS=, '{print $1}')
+        JOBS=$( sq | tail -n +2 | grep 'R' | awk -vORS=, '{print $1}'; )
         sstat $JOBS --format="JobID,NTasks,MaxRSS,MaxVMSize,AveCPU" | sort -n -k3,3
+    }
+    scancal(){
+        JOBS=$( sq | tail -n +2 | awk '{print $1}'; )
+        scancel $JOBS
     }
     spmem(){
        sp | grep -A 1 "${1}" | grep 'batch' | grep 'COMP' | sort -n -k9,9 | less -S
