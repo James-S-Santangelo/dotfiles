@@ -69,6 +69,9 @@ if [[ ${platform} == 'mac' ]]; then
 elif [[ ${platform} == 'linux' ]]; then
     export PATH=$HOME/bin:$PATH
     export PATH=$HOME/.local/bin:$PATH
+    
+    # Check terminal size after each command to prevent prompt issues on window resizing
+    shopt -s checkwinsize
 
     alias sp="sacct -u santang3 --format='JobID,JobName%50,NNodes,NTasks,NCPUS,Elapsed,CPUTime,ReqMem,MaxRSS,ExitCode,State'"
     stall(){
