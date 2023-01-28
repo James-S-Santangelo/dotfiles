@@ -44,12 +44,9 @@ fi
 #|## Mac OS X                                          #
 ########################################################
 if [[ ${platform} == 'mac' ]]; then
-    export PATH="/usr/local/sbin:$PATH"
-    export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-    export PATH="$PATH:/Users/jamessantangelo/Library/Python/2.7/bin"
+    export PATH="/opt/homebrew/path:$PATH"
 
     alias hpcnode="ssh -i ~/.ssh/hpcnode santang3@hpcnode1.utm.utoronto.ca"
-    alias calculon="ssh santang3@calculon.utm.utoronto.ca"
     alias niagara="ssh santang3@niagara.scinet.utoronto.ca"
     alias graham="ssh -i ~/.ssh/graham santang3@graham.computecanada.ca"
     alias oc-utm="sudo openconnect --authgroup 'UofT Default' --user=santang3 general.vpn.utoronto.ca"
@@ -278,5 +275,3 @@ pman() { # view man pages the fancy way
   tmp=$(mktemp); man -t $1  | ps2pdf - ${tmp} && xpdf -z 'width' -g 1280x1000 ${tmp} && rm ${tmp};
 };
 
-
-[ -f "/Users/jamessantangelo/.ghcup/env" ] && source "/Users/jamessantangelo/.ghcup/env" # ghcup-env
