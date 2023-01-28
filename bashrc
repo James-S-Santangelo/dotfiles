@@ -207,9 +207,8 @@ set -o vi
 # enable color support of ls and also add handy aliases
 export INPUTRC=~/.inputrc
 if [[ ${platform} == 'mac' ]]; then
-    export CLICOLOR=YES
+    export CLICOLOR=1
     eval `dircolors -b`
-    export JAVA_HOME=$(/usr/libexec/java_home)
 else
     eval `dircolors -b`
 fi
