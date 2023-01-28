@@ -44,7 +44,7 @@ fi
 #|## Mac OS X                                          #
 ########################################################
 if [[ ${platform} == 'mac' ]]; then
-    export PATH="/opt/homebrew/path:$PATH"
+    export PATH="/opt/homebrew/bin:$PATH"
 
     alias hpcnode="ssh -i ~/.ssh/hpcnode santang3@hpcnode1.utm.utoronto.ca"
     alias niagara="ssh santang3@niagara.scinet.utoronto.ca"
