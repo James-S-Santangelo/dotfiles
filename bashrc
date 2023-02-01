@@ -51,9 +51,7 @@ if [[ ${platform} == 'mac' ]]; then
     alias niagara="ssh niagara"
     alias graham="ssh graham"
     alias oc-utm="sudo openconnect --authgroup 'UofT Default' --user=santang3 general.vpn.utoronto.ca"
-    alias pkill="kill $(lsof -t -i:$1)"
-
-
+    
     ws-hpc(){
         ssh hpcnode -N -f -L localhost:$1:localhost:$1 santang3@hpcnode1.utm.utoronto.ca
     }
