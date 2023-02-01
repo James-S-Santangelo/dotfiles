@@ -47,19 +47,19 @@ if [[ ${platform} == 'mac' ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
     export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
-    alias hpcnode="ssh -i ~/.ssh/hpcnode santang3@hpcnode1.utm.utoronto.ca"
-    alias niagara="ssh santang3@niagara.scinet.utoronto.ca"
-    alias graham="ssh -i ~/.ssh/graham santang3@graham.computecanada.ca"
+    alias hpcnode="ssh hpcnode"
+    alias niagara="ssh niagara"
+    alias graham="ssh graham"
     alias oc-utm="sudo openconnect --authgroup 'UofT Default' --user=santang3 general.vpn.utoronto.ca"
+    alias pkill="kill $(lsof -t -i:$1)"
 
 
     ws-hpc(){
-        ssh -i ~/.ssh/hpcnode -N -f -L localhost:$1:localhost:$1 santang3@hpcnode1.utm.utoronto.ca
+        ssh hpcnode -N -f -L localhost:$1:localhost:$1 santang3@hpcnode1.utm.utoronto.ca
     }
     ws-gra(){
-        ssh -i ~/.ssh/graham -N -f -L localhost:$1:localhost:$1 santang3@graham.computecanada.ca
+        ssh graham -N -f -L localhost:$1:localhost:$1 santang3@graham.computecanada.ca
     }
-
 
 ########################################################
 #|## Linux                                             #
