@@ -101,7 +101,7 @@ then
         eval "$__conda_setup"
     else
         if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-            . "/opt/anaconda3/etc/profile.d/conda.sh"
+            . "/opt/anaconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
         else
             export PATH="/opt/anaconda3/bin:$PATH"
         fi
@@ -115,12 +115,6 @@ else
     function fromhpcnode(){
     scp -r "santang3@hpcnode1.utm.utoronto.ca:${1}" .
     }
-    
-    # Make conda available if manually installed
-    if [ -d "${HOME}/miniconda3"  ]
-    then
-        . ${HOME}/miniconda3/etc/profile.d/conda.sh 
-    fi
 fi
 
 ########################################################
@@ -151,6 +145,26 @@ then
     else
         ssh gra-login1
     fi
+
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/home/santang3/mambaforge/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/home/santang3/mambaforge/etc/profile.d/conda.sh" ]; then
+            . "/home/santang3/mambaforge/etc/profile.d/conda.sh"
+        else
+            export PATH="/home/santang3/mambaforge/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+
+    if [ -f "/home/santang3/mambaforge/etc/profile.d/mamba.sh" ]; then
+        . "/home/santang3/mambaforge/etc/profile.d/mamba.sh"
+    fi
+    # <<< conda initialize <<<
+
 else
     function fromgraham(){
     scp -r "santang3@graham.computecanada.ca:${1}" .
