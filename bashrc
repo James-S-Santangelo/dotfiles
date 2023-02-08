@@ -164,6 +164,7 @@ then
         . "/home/santang3/mambaforge/etc/profile.d/mamba.sh"
     fi
     # <<< conda initialize <<<
+    export PATH="/home/santang3/mambaforge/bin:$PATH"
 
 else
     function fromgraham(){
