@@ -177,7 +177,7 @@ fi
 ########################################################
 if [[ "x$(hostname)" = xcedar* ]]
 then
-    if  [ "x$(hostname)" = "xcedar1*"  ]
+    if  [ "x$(hostname)" = "xcedar1.cedar.computecanada.ca"  ]
     then
         :
     else
