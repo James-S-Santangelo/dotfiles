@@ -173,6 +173,38 @@ else
 fi
 
 ########################################################
+#|## Ponderosa                                         #
+########################################################
+if [[ "x$(hostname)" = xponderosa ]]
+then
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/home/santang3/mambaforge/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/home/santang3/mambaforge/etc/profile.d/conda.sh" ]; then
+            . "/home/santang3/mambaforge/etc/profile.d/conda.sh"
+        else
+            export PATH="/home/santang3/mambaforge/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+
+    if [ -f "/home/santang3/mambaforge/etc/profile.d/mamba.sh" ]; then
+        . "/home/santang3/mambaforge/etc/profile.d/mamba.sh"
+    fi
+    # <<< conda initialize <<<
+    export PATH="/home/santang3/mambaforge/bin:$PATH"
+
+else
+    function fromponderosa(){
+    scp -r "santang3ponderosa.biol.berkeley.edu:${1}" .
+    }
+fi
+
+
+########################################################
 #|## cedar                                             #
 ########################################################
 if [[ "x$(hostname)" = xcedar* ]]
