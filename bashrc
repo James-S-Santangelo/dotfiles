@@ -47,6 +47,11 @@ if [[ ${platform} == 'mac' ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
     export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
+    # Homebrew Ruby
+    export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+    export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
+    export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
+
     alias hpcnode="ssh hpcnode"
     alias niagara="ssh niagara"
     alias graham="ssh graham"
