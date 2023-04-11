@@ -204,7 +204,7 @@ then
 
 else
     function fromponderosa(){
-    scp -r "santang3ponderosa.biol.berkeley.edu:${1}" .
+    scp -r "santang3@ponderosa.biol.berkeley.edu:${1}" .
     }
 fi
 
