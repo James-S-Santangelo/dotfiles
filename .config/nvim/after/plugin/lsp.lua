@@ -6,7 +6,9 @@ lsp.ensure_installed({
   'bashls',
   'pylsp',
   'r_language_server',
-  'lua_ls'
+  'lua_ls',
+  'vimls',
+  'marksman'
 })
 
 local cmp = require('cmp')
