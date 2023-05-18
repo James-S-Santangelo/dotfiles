@@ -51,6 +51,7 @@ function linkdotfile {
 # install Homebrew main programs if on a mac
 if [[ "$(uname)" == "Darwin" ]]; then
 	check_preq brew
+    brew_install rg
 	install_brew tmux
 	install_brew nvim
 fi
