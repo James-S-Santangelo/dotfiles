@@ -65,11 +65,9 @@ linkdotfile .config
 # link manual zsh
 linkdotfile .zshrc
 
-# link antigen
-if [ ! -e ~/.antigen.zsh ]; then
-	yecho "~/.antigen not found, downloading..."
-	curl -L git.io/antigen > ~/.antigen.zsh
+if [ ! -d ~/.antidote ]; then
+	yecho "~/.antidote not found, downloading..."
+    git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-$HOME}/.antidote
 else
-	gecho "~/.antigen.zsh found."
+	gecho "${ZDOTDIR:-$HOME}/.antidote found."
 fi
-linkdotfile .antigenrc

@@ -1,19 +1,14 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 ########################################################
 #|# Preamble                                           #
 ########################################################
 
-# Source Antigen plugin manager and config
-source "${HOME}/.antigen.zsh"
-antigen init ~/.antigenrc
+## ---------- Plugin stuff ---------- ##
+autoload -Uz compinit && compinit
+source ${ZDOTDIR:-$HOME}/.antidote/antidote.zsh
+antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
+AGNOSTER_PROMPT_SEGMENTS[2]=  # Remove context from Agnoster prompt
 
-# Determine platform first
+## ---------- Platform stuff ---------- ##
 export platform='unknown'
 uname=$(uname)
 if [[ "x${uname}" == "xDarwin" ]]; then

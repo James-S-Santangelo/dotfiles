@@ -1,0 +1,13 @@
+# Theme
+agnoster/agnoster-zsh-theme
+
+# From OMZ
+ohmyzsh/ohmyzsh path:lib
+ohmyzsh/ohmyzsh path:plugins/command-not-found
+
+# Load bundles from external repos
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-history-substring-search
+zsh-users/zsh-syntax-highlighting
+
