@@ -67,8 +67,9 @@ linkdotfile .bashrc
 linkdotfile .bash_profile
 linkdotfile .zshrc
 linkdotfile .zsh_plugins.txt
+linkdotfile .config
 
-
+# Make sure Packer is installed
 if [ ! -d ~/.local/share/nvim/site/pack/packer ]; then
 	yecho "Packer not found, installing..."
 	git clone --depth 1 https://github.com/wbthomason/packer.nvim \
@@ -77,11 +78,7 @@ else
 	gecho "Packer found."
 fi
 
-
-# link config directory (including NeoVim settings)
-yecho "Linking config"
-cp -r .config/ ${HOME}
-
+# Make sure Antidote is installed
 if [ ! -d ~/.antidote ]; then
 	yecho "~/.antidote not found, downloading..."
     git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-$HOME}/.antidote
