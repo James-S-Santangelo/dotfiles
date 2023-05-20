@@ -68,6 +68,16 @@ linkdotfile .bash_profile
 linkdotfile .zshrc
 linkdotfile .zsh_plugins.txt
 
+
+if [ ! -d ~/.local/share/nvim/site/pack/packer ]; then
+	yecho "Packer not found, installing..."
+	git clone --depth 1 https://github.com/wbthomason/packer.nvim \
+		~/.local/share/nvim/site/pack/packer/start/packer.nvim	
+else
+	gecho "Packer found."
+fi
+
+
 # link config directory (including NeoVim settings)
 yecho "Linking config"
 cp -r .config/ ${HOME}
