@@ -1,16 +1,12 @@
-all: ../../src/bin/nvim
+INSTALL_DIR="${HOME}/.local"
+BIN_DIR="${HOME}/.local/bin"
 
-nvim-linux64.tar.gz:
-	wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
+all: ${BIN_DIR}/nvim
 
+mkdirs:
+	mkdir -p ${INSTALL_DIR} ${BIN_DIR}
 
-nvim-linux64/bin/nvim: nvim-linux64.tar.gz
-	tar xzvf nvim-linux64.tar.gz
-
-nvim.appimage: 
+${BIN_DIR}/nvim: mkdirs 
 	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 	chmod u+x nvim.appimage
-
-../../src/bin/nvim: nvim.appimage
-	mkdir -p ../../src/bin/
-	cp $< $@
+	mv nvim.appimage ${BIN_DIR}/nvim
