@@ -51,19 +51,24 @@ function linkdotfile {
 # install Homebrew main programs if on a mac
 if [[ "$(uname)" == "Darwin" ]]; then
 	check_preq brew
-    brew_install rg
+    check_preq zsh
+    install_brew rg
 	install_brew tmux
 	install_brew nvim
+elif [[ "$(uname)" == "Linux" ]]; then
+    check_preq rg
+    check_preq zsh
+    check_preq tmux
+    check_preq nvim
 fi
 
 # link over git stuff
 linkdotfile .gitconfig
+linkdotfile .zshrc
 
 # link config directory (including NeoVim settings)
-linkdotfile .config
-
-# link manual zsh
-linkdotfile .zshrc
+yecho "Linking config"
+cp -r .config/ ${HOME}
 
 if [ ! -d ~/.antidote ]; then
 	yecho "~/.antidote not found, downloading..."
