@@ -16,22 +16,8 @@ elif [[ "x${uname}" == "xLinux" ]]; then
     export platform='linux'
 fi
 
-export dnsdomainname='unknown'
-if which dnsdomainname >/dev/null; then
-    export dnsdomainname=$(dnsdomainname)
-else
-    export dnsdomainname='unknown'
-fi
-
-export domainname='unknown'
-if which domainname >/dev/null; then
-    export domainname=$(domainname)
-else
-    export domainname='unknown'
-fi
-
 export hostname='unknown'
-if which domainname >/dev/null; then
+if which hostname >/dev/null; then
     export hostname=$(hostname)
 else
     export hostname='unknown'
@@ -226,44 +212,6 @@ else
     }
 fi
 
-
-########################################################
-#|## cedar                                             #
-########################################################
-if [[ "x$(hostname)" = xcedar* ]]
-then
-    if  [ "x$(hostname)" = "xcedar1.cedar.computecanada.ca"  ]
-    then
-        :
-    else
-        ssh cedar1
-    fi
-
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/home/santang3/mambaforge/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/home/santang3/mambaforge/etc/profile.d/conda.sh" ]; then
-            . "/home/santang3/mambaforge/etc/profile.d/conda.sh"
-        else
-            export PATH="/home/santang3/mambaforge/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-
-    if [ -f "/home/santang3/mambaforge/etc/profile.d/mamba.sh" ]; then
-        . "/home/santang3/mambaforge/etc/profile.d/mamba.sh"
-    fi
-    # <<< conda initialize <<<
-    export PATH="/home/santang3/mambaforge/bin:$PATH"
-
-else
-    function fromcedar(){
-    scp -r "santang3@cedar.computecanada.ca:${1}" .
-    }
-fi
 ########################################################
 #|# General                                            #
 ########################################################
@@ -287,27 +235,7 @@ parse_git_branch() {
 
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\]:\w\[\033[31m\]$(parse_git_branch)\[\033[01;34m\]$\[\033[00m\] '
 
-# have to stay here before setting PS1
-# export GIT_PS1_SHOWDIRTYSTATE=true
-# export export GIT_PS1_SHOWSTASHSTATE=true
-
-# # set a fancy prompt
-# declare -F | grep __git_ps1 > /dev/null
-# if [ "$?" -eq 0 ]
-# then
-    # echo ${platform}
-        # export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\]:\w\[\033[31m\]$(__git_ps1 "(%s)")\[\033[01;34m\]$\[\033[00m\] '
-# else
-    # if [[ ${platform} == 'mac' ]]; then
-        # export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\]:\w\[\033[31m\]$(parse_git_branch)\[\033[01;34m\]$\[\033[00m\] '
-    # else
-        # export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\]:\w\[\033[31m\]\[\033[01;34m\]$\[\033[00m\] '
-    # fi
- #fi
-
 # set bash to vi mode
-# (hit ESC for command mode/
-#  hit i for insert mode)
 set -o vi
 
 # enable color support of ls and also add handy aliases
@@ -317,14 +245,6 @@ if [[ ${platform} == 'mac' ]]; then
     eval `dircolors -b`
 else
     eval `dircolors -b`
-fi
-
-
-# Install Vundle for Vim if not installed
-if ! [ -d "${HOME}/.vim/bundle/Vundle.vim"  ]
-then
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    vim +PluginInstall +qall
 fi
 
 ########################################################
@@ -368,14 +288,11 @@ alias dc='cd'
 alias tpo='top'
 alias otp='top'
 alias t='top'
-
-alias mem="ps aux | awk '{print \$2, \$4, \$11}' | sort -k2rn | head -n 20"
-alias ppu="ps -u '$(echo $(w -h | cut -d ' ' -f1 | sort -u))' o user= | sort | uniq -c | sort -rn"
 alias spath="tr ':' '\n' <<< "$PATH" | less" # Split PATH by newline
 
 # vim
-alias vi=vim
-alias vim="vim -O"
+alias vi=nvim
+alias vim=nvim
 
 pman() { # view man pages the fancy way
   tmp=$(mktemp); man -t $1  | ps2pdf - ${tmp} && xpdf -z 'width' -g 1280x1000 ${tmp} && rm ${tmp};

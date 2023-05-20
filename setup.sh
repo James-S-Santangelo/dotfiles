@@ -63,7 +63,10 @@ fi
 
 # link over git stuff
 linkdotfile .gitconfig
+linkdotfile .bashrc
+linkdotfile .bash_profile
 linkdotfile .zshrc
+linkdotfile .zsh_plugins.txt
 
 # link config directory (including NeoVim settings)
 yecho "Linking config"
