@@ -68,6 +68,7 @@ linkdotfile .bash_profile
 linkdotfile .zshrc
 linkdotfile .zsh_plugins.txt
 linkdotfile .config
+linkdotfile .tmux.conf
 
 # Make sure Packer is installed
 if [ ! -d ~/.local/share/nvim/site/pack/packer ]; then
