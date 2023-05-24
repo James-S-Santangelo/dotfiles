@@ -1,8 +1,6 @@
 ########################################################
 #|# Preamble                                           #
 ########################################################
-
-## ---------- Plugin stuff ---------- ##
 autoload -Uz compinit && compinit
 source ${ZDOTDIR:-$HOME}/.antidote/antidote.zsh
 antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
@@ -72,6 +70,17 @@ if [[ ${platform} == 'mac' ]]; then
     fi
     unset __mamba_setup
     # <<< mamba initialize <<<
+    
+    # Quick scp from servers
+    function fromponderosa(){
+        scp -r "santang3@ponderosa.biol.berkeley.edu:${1}" .
+    }
+    function fromgraham(){
+        scp -r "santang3@graham.computecanada.ca:${1}" .
+    }
+    function fromhpcnode(){
+        scp -r "santang3@hpcnode1.utm.utoronto.ca:${1}" .
+    }
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
