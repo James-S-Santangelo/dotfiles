@@ -213,14 +213,6 @@ else
 fi
 
 ########################################################
-#|# General                                            #
-########################################################
-
-alias dirbashrc="grep -nT '^#|' ~/.bashrc"
-alias bashrc="vim ~/.bashrc"
-
-
-########################################################
 #|## Bash, PATH                                        #
 ########################################################
 
@@ -248,12 +240,6 @@ else
 fi
 
 ########################################################
-#|## Environment                                       #
-########################################################
-
-export EDITOR=vim
-
-########################################################
 #|## Aliases, Utiliites                                #
 ########################################################
 
@@ -269,8 +255,6 @@ alias ltail='ls -rtlh |  tail -n 20'
 alias j='jobs'
 alias g='gthumb'
 alias d='date'
-alias v='vim'
-alias eb='vim ~/.bashrc'
 alias kk='kill %'
 
 # alias top='htop -d 1'
@@ -283,7 +267,6 @@ alias .....="cd ../../../.."
 # correct common typos
 alias sl='ls'
 alias iv='vi'
-alias vi='vim'
 alias dc='cd'
 alias tpo='top'
 alias otp='top'
