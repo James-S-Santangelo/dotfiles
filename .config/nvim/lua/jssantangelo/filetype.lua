@@ -6,4 +6,7 @@ vim.filetype.add({
     filename = {
         ['Snakefile'] = 'python',
     },
+    pattern = {
+        ['Singularity.*'] = 'bash',
+    },
 })
