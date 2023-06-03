@@ -51,7 +51,7 @@ if [[ ${platform} == 'mac' ]]; then
     alias oc-utm="sudo openconnect --authgroup 'UofT Default' --user=santang3 general.vpn.utoronto.ca"
     
     ws-hpc(){
-        ssh hpcnode -N -f -L localhost:$1:localhost:$1 santang3@hpcnode1.utm.utoronto.ca
+        ssh hpcnode -N -f -L localhost:${1}:localhost:${1} santang3@hpcnode1.utm.utoronto.ca
     }
     
     # >>> mamba initialize >>>
