@@ -41,6 +41,7 @@ bindkey -v
 ## ---------- Mac OSX ---------- ##
 if [[ ${platform} == 'mac' ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
+    export PATH="/opt/homebrew/sbin:$PATH"
     export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
     # Homebrew Ruby
