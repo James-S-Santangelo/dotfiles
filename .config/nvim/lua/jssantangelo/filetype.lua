@@ -1,10 +1,10 @@
 -- tell nvim to treat Snakefiles as python 
 vim.filetype.add({
     extension = {
-        smk = 'python',
+        smk = 'snakemake',
     },
     filename = {
-        ['Snakefile'] = 'python',
+        ['Snakefile'] = 'snakemake',
     },
     pattern = {
         ['Singularity.*'] = 'bash',
