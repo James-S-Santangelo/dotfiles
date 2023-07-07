@@ -1,0 +1,13 @@
+{
+    "save_workspace": "never",
+    "load_workspace": false,
+    "initial_working_directory": "~",
+    "always_save_history": false,
+    "restore_last_project": false,
+    "num_spaces_for_tab": 4,
+    "syntax_color_console": true,
+    "help_font_size_points": 11,
+    "font_size_points": 11,
+    "posix_terminal_shell": "bash",
+    "editor_theme": "Catppuccin"
+}
