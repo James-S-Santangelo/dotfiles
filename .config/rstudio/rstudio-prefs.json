@@ -9,5 +9,6 @@
     "help_font_size_points": 11,
     "font_size_points": 11,
     "posix_terminal_shell": "bash",
-    "editor_theme": "Catppuccin"
+    "editor_theme": "Catppuccin",
+    "source_with_echo": true
 }
