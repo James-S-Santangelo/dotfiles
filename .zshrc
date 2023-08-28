@@ -55,7 +55,7 @@ if [[ ${platform} == 'mac' ]]; then
         ssh hpcnode -N -f -L localhost:${1}:localhost:${1} santang3@hpcnode1.utm.utoronto.ca
     }
     ws-pon(){
-        ssh hpcnode -N -f -L localhost:${1}:localhost:${1} santang3@ponderosa.bio.berkeley.edu
+        ssh ponderosa -N -f -L localhost:${1}:localhost:${1} santang3@ponderosa.bio.berkeley.edu
     }
     
     # Quick scp from servers
