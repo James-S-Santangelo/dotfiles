@@ -213,6 +213,35 @@ else
 fi
 
 ########################################################
+#|## Savio                                             #
+########################################################
+if [ "x$(hostname)" = "xln001.brc" ]
+then
+    for i in allhands `groups`; do
+        test -f "/global/home/groups/$i/.bashrc" && source /global/home/groups/$i/.bashrc
+        test -f "/global/home/groups-sw/$i/.bashrc" && source /global/home/groups-sw/$i/.bashrc
+        test -f "/global/home/groups/pl1data/$i/.bashrc" && source /global/home/groups/pl1data/$i/.bashrc
+done
+fi
+
+########################################################
+#|## niagara                                           #
+########################################################
+if [[ "x$(hostname)" = xnia* ]]
+then
+    if  [ "x$(hostname)" = "xnia-login01.scinet.local"  ]
+    then
+        :
+    else
+        ssh nia-login01
+    fi
+else
+    function fromniagara(){
+    scp -r "santang3@niagara.scinet.utoronto.ca:${1}" .
+    }
+fi
+
+########################################################
 #|## Bash, PATH                                        #
 ########################################################
 
