@@ -9,3 +9,6 @@ require('Comment').setup({
         block = '<leader>b',
     },
 })
+
+local ft = require('Comment.ft')
+ft.set('snakemake', '# %s')
