@@ -78,7 +78,7 @@ elif [[ ${platform} == 'linux' ]]; then
     # Check terminal size after each command to prevent prompt issues on window resizing
     shopt -s checkwinsize
 
-    alias sp="sacct -u santang3 --format='JobID,JobName%50,NNodes,NTasks,NCPUS,Elapsed,CPUTime,ReqMem,MaxRSS,ExitCode,State'"
+    alias sp="sacct --format='JobID,JobName%50,NNodes,NTasks,NCPUS,Elapsed,CPUTime,ReqMem,MaxRSS,ExitCode,State'"
     stall(){
         JOBS=$( sq | tail -n +2 | grep 'R' | awk -vORS=, '{print $1}'; )
         sstat $JOBS --format="JobID,NTasks,MaxRSS,MaxVMSize,AveCPU" | sort -n -k3,3
@@ -215,13 +215,44 @@ fi
 ########################################################
 #|## Savio                                             #
 ########################################################
-if [ "x$(hostname)" = "xln001.brc" ]
+if [[ "$(hostname)" == *"brc" ]]
 then
+    if  [[ "$(hostname)" == "ln001"* ]]
+    then
+        :
+    else
+        ssh ln001
+    fi
+
+    # Make sure system-wide binaries and modules are available
     for i in allhands `groups`; do
         test -f "/global/home/groups/$i/.bashrc" && source /global/home/groups/$i/.bashrc
         test -f "/global/home/groups-sw/$i/.bashrc" && source /global/home/groups-sw/$i/.bashrc
         test -f "/global/home/groups/pl1data/$i/.bashrc" && source /global/home/groups/pl1data/$i/.bashrc
-done
+    done
+
+    # Load more recent git and compiler
+    module load git/2.36.1
+    module load gcc/11.3.0
+
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/global/home/users/jamessantangelo/miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/global/home/users/jamessantangelo/miniforge3/etc/profile.d/conda.sh" ]; then
+            . "/global/home/users/jamessantangelo/miniforge3/etc/profile.d/conda.sh"
+        else
+            export PATH="/global/home/users/jamessantangelo/miniforge3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+
+    if [ -f "/global/home/users/jamessantangelo/miniforge3/etc/profile.d/mamba.sh" ]; then
+        . "/global/home/users/jamessantangelo/miniforge3/etc/profile.d/mamba.sh"
+    fi
+    # <<< conda initialize <<<
 fi
 
 ########################################################
