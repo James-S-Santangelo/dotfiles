@@ -341,3 +341,4 @@ pman() { # view man pages the fancy way
   tmp=$(mktemp); man -t $1  | ps2pdf - ${tmp} && xpdf -z 'width' -g 1280x1000 ${tmp} && rm ${tmp};
 };
 
+. "$HOME/.cargo/env"
