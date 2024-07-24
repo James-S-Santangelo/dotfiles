@@ -10,5 +10,7 @@
     "font_size_points": 11,
     "posix_terminal_shell": "bash",
     "editor_theme": "Catppuccin",
-    "source_with_echo": true
+    "source_with_echo": true,
+    "default_project_location": "/Users/jamessantangelo/Downloads",
+    "new_proj_use_renv": true
 }

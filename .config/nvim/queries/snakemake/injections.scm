@@ -1,3 +1,5 @@
 ; inherits: python
 
-(wildcard (constraint) @regex)
+(wildcard
+  (constraint) @injection.content
+  (#set! injection.language "regex"))
