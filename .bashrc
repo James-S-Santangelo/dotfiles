@@ -38,16 +38,8 @@ if [[ ${platform} == 'mac' ]]; then
     export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
     export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 
-    alias hpcnode="ssh hpcnode"
-    alias niagara="ssh niagara"
-    alias graham="ssh graham"
-    alias oc-utm="sudo openconnect --authgroup 'UofT Default' --user=santang3 general.vpn.utoronto.ca"
-    
     ws-hpc(){
         ssh hpcnode -N -f -L localhost:$1:localhost:$1 santang3@hpcnode1.utm.utoronto.ca
-    }
-    ws-gra(){
-        ssh graham -N -f -L localhost:$1:localhost:$1 santang3@graham.computecanada.ca
     }
 
     # >>> mamba initialize >>>
@@ -154,6 +146,10 @@ then
     else
         ssh gra-login1
     fi
+    
+    # Load necessary modules
+    module load nodejs
+    module load apptainer
 
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
@@ -181,6 +177,47 @@ else
     }
 fi
 
+########################################################
+#|## Narval                                            #
+########################################################
+if [[ "x$(hostname)" = xnar* ]]
+then
+    if  [ "x$(hostname)" = "xnarval1.narval.calcul.quebec"  ]
+    then
+        :
+    else
+        ssh narval1
+    fi
+
+    # Load necessary modules
+    module load nodejs
+    module load apptainer
+
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/home/santang3/miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/home/santang3/miniforge3/etc/profile.d/conda.sh" ]; then
+            . "/home/santang3/miniforge3/etc/profile.d/conda.sh"
+        else
+            export PATH="/home/santang3/miniforge3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+
+    if [ -f "/home/santang3/miniforge3/etc/profile.d/mamba.sh" ]; then
+        . "/home/santang3/miniforge3/etc/profile.d/mamba.sh"
+    fi
+    # <<< conda initialize <<<
+    export PATH="/home/santang3/miniforge3/bin:$PATH"
+
+else
+    function fromnarval(){
+    scp -r "santang3@:narval.alliancecan.ca${1}" .
+    }
+fi
 ########################################################
 #|## Ponderosa                                         #
 ########################################################
@@ -253,23 +290,6 @@ then
         . "/global/home/users/jamessantangelo/miniforge3/etc/profile.d/mamba.sh"
     fi
     # <<< conda initialize <<<
-fi
-
-########################################################
-#|## niagara                                           #
-########################################################
-if [[ "x$(hostname)" = xnia* ]]
-then
-    if  [ "x$(hostname)" = "xnia-login01.scinet.local"  ]
-    then
-        :
-    else
-        ssh nia-login01
-    fi
-else
-    function fromniagara(){
-    scp -r "santang3@niagara.scinet.utoronto.ca:${1}" .
-    }
 fi
 
 ########################################################
