@@ -32,6 +32,7 @@ fi
 if [[ ${platform} == 'mac' ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
     export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+    . "$HOME/.cargo/env"
 
     # Homebrew Ruby
     export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
@@ -361,4 +362,3 @@ pman() { # view man pages the fancy way
   tmp=$(mktemp); man -t $1  | ps2pdf - ${tmp} && xpdf -z 'width' -g 1280x1000 ${tmp} && rm ${tmp};
 };
 
-. "$HOME/.cargo/env"
