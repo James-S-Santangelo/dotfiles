@@ -269,10 +269,6 @@ then
         test -f "/global/home/groups/pl1data/$i/.bashrc" && source /global/home/groups/pl1data/$i/.bashrc
     done
 
-    # Load more recent git and compiler
-    module load git/2.36.1
-    module load gcc/11.3.0
-
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
     __conda_setup="$('/global/home/users/jamessantangelo/miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
