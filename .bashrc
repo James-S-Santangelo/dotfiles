@@ -153,19 +153,6 @@ then
     module load apptainer
     module load python/3.12.4
 
-    # >>> mamba initialize >>>
-    # !! Contents within this block are managed by 'mamba shell init' !!
-    export MAMBA_EXE='/home/santang3/miniforge3/bin/mamba';
-    export MAMBA_ROOT_PREFIX='/home/santang3/miniforge3';
-    __mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__mamba_setup"
-    else
-        alias mamba="$MAMBA_EXE"  # Fallback on help from mamba activate
-    fi
-    unset __mamba_setup
-    # <<< mamba initialize <<<
-
 else
     function fromnarval(){
     scp -r "santang3@:narval.alliancecan.ca${1}" .
