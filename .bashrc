@@ -137,53 +137,11 @@ else
 fi
 
 ########################################################
-#|## graham                                            #
-########################################################
-if [[ "x$(hostname)" = xgra* ]]
-then
-    if  [ "x$(hostname)" = "xgra-login1"  ]
-    then
-        :
-    else
-        ssh gra-login1
-    fi
-    
-    # Load necessary modules
-    module load nodejs
-    module load apptainer
-
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/home/santang3/mambaforge/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/home/santang3/mambaforge/etc/profile.d/conda.sh" ]; then
-            . "/home/santang3/mambaforge/etc/profile.d/conda.sh"
-        else
-            export PATH="/home/santang3/mambaforge/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-
-    if [ -f "/home/santang3/mambaforge/etc/profile.d/mamba.sh" ]; then
-        . "/home/santang3/mambaforge/etc/profile.d/mamba.sh"
-    fi
-    # <<< conda initialize <<<
-    export PATH="/home/santang3/mambaforge/bin:$PATH"
-
-else
-    function fromgraham(){
-    scp -r "santang3@graham.computecanada.ca:${1}" .
-    }
-fi
-
-########################################################
 #|## Narval                                            #
 ########################################################
 if [[ "x$(hostname)" = xnar* ]]
 then
-    if  [ "x$(hostname)" = "xnarval1.narval.calcul.quebec"  ]
+    if  [ "x$(hostname)" = "xnarval1"  ]
     then
         :
     else
@@ -248,45 +206,6 @@ else
     function fromponderosa(){
     scp -r "santang3@ponderosa.biol.berkeley.edu:${1}" .
     }
-fi
-
-########################################################
-#|## Savio                                             #
-########################################################
-if [[ "$(hostname)" == *"brc" ]]
-then
-    if  [[ "$(hostname)" == "ln001"* ]]
-    then
-        :
-    else
-        ssh ln001
-    fi
-
-    # Make sure system-wide binaries and modules are available
-    for i in allhands `groups`; do
-        test -f "/global/home/groups/$i/.bashrc" && source /global/home/groups/$i/.bashrc
-        test -f "/global/home/groups-sw/$i/.bashrc" && source /global/home/groups-sw/$i/.bashrc
-        test -f "/global/home/groups/pl1data/$i/.bashrc" && source /global/home/groups/pl1data/$i/.bashrc
-    done
-
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/global/home/users/jamessantangelo/miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/global/home/users/jamessantangelo/miniforge3/etc/profile.d/conda.sh" ]; then
-            . "/global/home/users/jamessantangelo/miniforge3/etc/profile.d/conda.sh"
-        else
-            export PATH="/global/home/users/jamessantangelo/miniforge3/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-
-    if [ -f "/global/home/users/jamessantangelo/miniforge3/etc/profile.d/mamba.sh" ]; then
-        . "/global/home/users/jamessantangelo/miniforge3/etc/profile.d/mamba.sh"
-    fi
-    # <<< conda initialize <<<
 fi
 
 ########################################################
