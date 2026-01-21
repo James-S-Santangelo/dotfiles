@@ -1,4 +1,4 @@
 require("jssantangelo.remap")
-require("jssantangelo.packer")
+require("jssantangelo.lazy")
 require("jssantangelo.set")
 require("jssantangelo.filetype")
