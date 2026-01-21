@@ -12,5 +12,7 @@
     "editor_theme": "Catppuccin",
     "source_with_echo": true,
     "default_project_location": "/Users/jamessantangelo/Downloads",
-    "jobs_tab_visibility": "shown"
+    "jobs_tab_visibility": "shown",
+    "rmd_viewer_type": "pane",
+    "default_encoding": "UTF-8"
 }
