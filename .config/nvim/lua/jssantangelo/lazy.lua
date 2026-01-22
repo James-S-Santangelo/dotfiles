@@ -97,4 +97,31 @@ require("lazy").setup({
 
   -- Undo tree
   'mbbill/undotree',
+    
+  -- Lualine 
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('lualine').setup {
+        options = {
+          theme = 'auto',  -- Will automatically use your current colorscheme
+          -- You can also set a specific theme like:
+          -- theme = 'catppuccin'
+        }
+      }
+    end,
+  },
+
+  -- Auto pairs
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = function()
+      require('nvim-autopairs').setup {
+        check_ts = true,  -- Enable treesitter integration
+        disable_filetype = { "TelescopePrompt" },
+      }
+    end,
+  },
 })
