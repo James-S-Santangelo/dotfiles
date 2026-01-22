@@ -147,8 +147,8 @@ then
     module load apptainer
     module load python/3.12.4
 
-    # Rust
-    . "$HOME/.cargo/env"
+    # Made sure Rust crates are on PATH
+    export PATH="$HOME/.cargo/bin:$PATH"
 
     # >>> mamba initialize >>>
     # !! Contents within this block are managed by 'mamba shell init' !!
