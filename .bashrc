@@ -103,7 +103,7 @@ then
         eval "$__conda_setup"
     else
         if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-            . "/opt/anaconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
+            . "/opt/anaconda3/etc/profile.d/conda.sh"
         else
             export PATH="/opt/anaconda3/bin:$PATH"
         fi
