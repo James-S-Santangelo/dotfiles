@@ -147,6 +147,9 @@ then
     module load apptainer
     module load python/3.12.4
 
+    # Rust
+    . "$HOME/.cargo/env"
+
     # >>> mamba initialize >>>
     # !! Contents within this block are managed by 'mamba shell init' !!
     export MAMBA_EXE='/home/santang3/miniforge3/bin/mamba';
