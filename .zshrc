@@ -44,9 +44,6 @@ if [[ ${platform} == 'mac' ]]; then
     export PATH="/opt/homebrew/sbin:$PATH"
     export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
-    # Homebrew Ruby
-    source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-    
     ws-hpc(){
         ssh hpcnode -N -f -L localhost:${1}:localhost:${1} santang3@hpcnode1.utm.utoronto.ca
     }
@@ -58,11 +55,11 @@ if [[ ${platform} == 'mac' ]]; then
     function fromponderosa(){
         scp -r "santang3@ponderosa.biol.berkeley.edu:${1}" .
     }
-    function fromgraham(){
-        scp -r "santang3@graham.computecanada.ca:${1}" .
-    }
     function fromhpcnode(){
         scp -r "santang3@hpcnode1.utm.utoronto.ca:${1}" .
+    }
+    function fromnarval(){
+        scp -r "santang3@narval.alliancecan.ca:${1}" .
     }
 
     # >>> conda initialize >>>
