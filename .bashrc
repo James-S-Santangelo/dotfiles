@@ -112,6 +112,8 @@ then
 
     # Random
     export LC_ALL="en_US.UTF-8"
+    export LD_LIBRARY_PATH="$HOME/.local/lib:$HOME/.local/lib64:$LD_LIBRARY_PATH"
+
 else
     function fromhpcnode(){
     scp -r "santang3@hpcnode1.utm.utoronto.ca:${1}" .
