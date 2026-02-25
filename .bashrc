@@ -97,6 +97,9 @@ fi
 if [ "x$(hostname)" = "xhpcnode1.utm.utoronto.ca" ]
 then
     
+    # Made sure Rust crates are on PATH
+    export PATH="$HOME/.cargo/bin:$PATH"
+
     # >>> mamba initialize >>>
     # !! Contents within this block are managed by 'mamba shell init' !!
     export MAMBA_EXE='/home/santang3/miniforge3/bin/mamba';
