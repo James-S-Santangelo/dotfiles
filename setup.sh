@@ -71,15 +71,6 @@ linkdotfile .config
 linkdotfile .tmux.conf
 linkdotfile .condarc
 
-# Make sure Packer is installed
-if [ ! -d ~/.local/share/nvim/site/pack/packer ]; then
-	yecho "Packer not found, installing..."
-	git clone --depth 1 https://github.com/wbthomason/packer.nvim \
-		~/.local/share/nvim/site/pack/packer/start/packer.nvim	
-else
-	gecho "Packer found."
-fi
-
 # Make sure Antidote is installed
 if [ ! -d ~/.antidote ]; then
 	yecho "~/.antidote not found, downloading..."
