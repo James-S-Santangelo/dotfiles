@@ -33,3 +33,11 @@ vim.opt.colorcolumn = "100"
 -- spell check
 vim.opt.spell = true
 vim.opt.spelllang = "en_us"
+
+-- Force pbcopy to clipboard
+vim.g.clipboard = {
+  name = 'macOS',
+  copy  = { ['+'] = 'pbcopy', ['*'] = 'pbcopy' },
+  paste = { ['+'] = 'pbpaste', ['*'] = 'pbpaste' },
+  cache_enabled = 0,
+}

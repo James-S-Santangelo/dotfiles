@@ -37,20 +37,10 @@ function check_preq {
     recho "$1 not found, install before proceeding."
 }
 
-# function for linking dotfiles
-function linkdotfile {
-  file="$1"
-  if [ ! -e ~/$file -a ! -L ~/$file ]; then
-      yecho "$file not found, linking..." >&2
-      ln -sf ~/github-repos/dotfiles/$file ~/$file
-  else
-      gecho "$file found, ignoring..." >&2
-  fi
-}
-
 # install Homebrew main programs if on a mac
 if [[ "$(uname)" == "Darwin" ]]; then
 	check_preq brew
+    check_preq stow
     install_brew zsh
     install_brew rg
 	install_brew tmux
@@ -59,17 +49,24 @@ elif [[ "$(uname)" == "Linux" ]]; then
     check_preq rg
     check_preq tmux
     check_preq nvim
+    check_preq stow
 fi
 
-# link over git stuff
-linkdotfile .gitconfig
-linkdotfile .bashrc
-linkdotfile .bash_profile
-linkdotfile .zshrc
-linkdotfile .zsh_plugins.txt
-linkdotfile .config
-linkdotfile .tmux.conf
-linkdotfile .condarc
+# Remove old absolute dotfile symlinks from previous linkdotfile approach
+gecho "Cleaning up old dotfile symlinks..."
+for f in .gitconfig .bashrc .bash_profile .zshrc .zsh_plugins.txt .tmux.conf .condarc; do
+    [ -L "$HOME/$f" ] && rm "$HOME/$f" && yecho "Removed old symlink: ~/$f"
+done
+
+# Back up real nvim config if it exists and isn't already a symlink
+if [ -e "$HOME/.config/nvim" ] && [ ! -L "$HOME/.config/nvim" ]; then
+    yecho "Backing up ~/.config/nvim to ~/.config/nvim.bak"
+    mv "$HOME/.config/nvim" "$HOME/.config/nvim.bak"
+fi
+
+# Stow dotfiles
+gecho "Stowing dotfiles..."
+stow --dir="$HOME/github-repos" --target="$HOME" dotfiles
 
 # Make sure Antidote is installed
 if [ ! -d ~/.antidote ]; then
