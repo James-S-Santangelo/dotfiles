@@ -74,6 +74,15 @@ require("lazy").setup(
         },
 
         { 'ojroques/nvim-osc52', lazy = false },
+
+        --LSP
+        { 'neovim/nvim-lspconfig' },
+
+        --Auto-completion for LSP
+        {
+            'saghen/blink.cmp',
+            version = '1.*',
+        },
     },
     {
         -- Options go here, separate from plugin specs

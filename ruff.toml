@@ -1,0 +1,10 @@
+builtins = ["snakemake"]
+[lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes (undefined names, unused imports)
+    "W",   # pycodestyle warnings
+    "I",   # isort (import ordering)
+    "B",   # bugbear (common bugs and design issues)
+    "N",   # naming conventions
+]
