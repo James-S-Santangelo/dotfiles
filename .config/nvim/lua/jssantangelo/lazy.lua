@@ -1,88 +1,82 @@
--- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
+        "git", "clone", "--filter=blob:none",
         "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable",
-        lazypath,
+        "--branch=stable", lazypath,
     })
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Configure plugins
-require("lazy").setup({
-    rocks = { enabled = false },
-    -- Treesitter (load first, before Telescope)
+require("lazy").setup(
     {
-        'nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate',
-        lazy = false,
-        config = function()
-            require('nvim-treesitter').setup({
-                ensure_installed = { 'python', 'r', 'c', 'cpp', 'yaml', 'lua', 'vim', 'vimdoc', 'snakemake' },
-                highlight = { enable = true },
-            })
-        end,
-    },
-
-    -- Telescope fuzzy finder (loads after Treesitter)
-    {
-        'nvim-telescope/telescope.nvim',
-        branch = 'master',
-        dependencies = { 
-            'nvim-lua/plenary.nvim',
+        -- Treesitter
+        {
             'nvim-treesitter/nvim-treesitter',
+            lazy = false,
+            build = ':TSUpdate',
+            config = function()
+                -- New API: call install() directly instead of ensure_installed
+                require('nvim-treesitter').install({
+                    'python', 'r', 'cpp', 'yaml', 'snakemake',
+                })
+                -- Enable highlighting via Neovim's built-in treesitter
+                vim.api.nvim_create_autocmd('FileType', {
+                    pattern = '*',
+                    callback = function(event)
+                        pcall(vim.treesitter.start, event.buf)
+                    end,
+                })
+            end,
         },
-        config = function()
-            require('telescope').setup{}
-        end,
-    },
-    -- Color scheme
-    {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        priority = 1000,
-    },
 
-    -- Harpoon for quick file navigation
-    'ThePrimeagen/harpoon',
+        -- Telescope
+        {
+            'nvim-telescope/telescope.nvim',
+            branch = 'master',
+            dependencies = {
+                'nvim-lua/plenary.nvim',
+                'nvim-treesitter/nvim-treesitter',
+            },
+            config = function()
+                require('telescope').setup{}
+            end,
+        },
 
-    -- Comment plugin
-    'numToStr/Comment.nvim',
+        -- Color scheme
+        {
+            "catppuccin/nvim",
+            name = "catppuccin",
+            priority = 1000,
+        },
 
-    -- Undo tree
-    'mbbill/undotree',
+        'ThePrimeagen/harpoon',
+        'numToStr/Comment.nvim',
+        'mbbill/undotree',
 
-    -- Lualine 
-    {
-        'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
-        config = function()
-            require('lualine').setup {
-                options = {
-                    theme = 'auto',  -- Will automatically use your current colorscheme
-                    -- You can also set a specific theme like:
-                    -- theme = 'catppuccin'
+        {
+            'nvim-lualine/lualine.nvim',
+            dependencies = { 'nvim-tree/nvim-web-devicons' },
+            config = function()
+                require('lualine').setup { options = { theme = 'auto' } }
+            end,
+        },
+
+        {
+            'windwp/nvim-autopairs',
+            event = "InsertEnter",
+            config = function()
+                require('nvim-autopairs').setup {
+                    check_ts = true,
+                    disable_filetype = { "TelescopePrompt" },
                 }
-            }
-        end,
-    },
+            end,
+        },
 
-    -- Auto pairs
+        { 'ojroques/nvim-osc52', lazy = false },
+    },
     {
-        'windwp/nvim-autopairs',
-        event = "InsertEnter",
-        config = function()
-            require('nvim-autopairs').setup {
-                check_ts = true,  -- Enable treesitter integration
-                disable_filetype = { "TelescopePrompt" },
-            }
-        end,
-    },
-
-    -- Clipboard support on Linux servers
-    { 'ojroques/nvim-osc52', lazy = false },
-})
+        -- Options go here, separate from plugin specs
+        rocks = { enabled = false },
+    }
+)
