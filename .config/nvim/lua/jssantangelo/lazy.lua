@@ -124,4 +124,7 @@ require("lazy").setup({
       }
     end,
   },
+
+  -- Clipboard support on Linux servers
+  { 'ojroques/nvim-osc52', lazy = false },
 })

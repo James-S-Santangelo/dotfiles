@@ -34,10 +34,24 @@ vim.opt.colorcolumn = "100"
 vim.opt.spell = true
 vim.opt.spelllang = "en_us"
 
--- Force pbcopy to clipboard
-vim.g.clipboard = {
-  name = 'macOS',
-  copy  = { ['+'] = 'pbcopy', ['*'] = 'pbcopy' },
-  paste = { ['+'] = 'pbpaste', ['*'] = 'pbpaste' },
-  cache_enabled = 0,
-}
+-- Copy to clipboard
+if vim.fn.has('mac') == 1 then
+  vim.g.clipboard = {
+    name  = 'macOS',
+    copy  = { ['+'] = 'pbcopy', ['*'] = 'pbcopy' },
+    paste = { ['+'] = 'pbpaste', ['*'] = 'pbpaste' },
+    cache_enabled = 0,
+  }
+else
+  vim.g.clipboard = {
+    name  = 'OSC 52',
+    copy  = {
+      ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+      ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+    },
+    paste = {
+      ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+      ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+    },
+  }
+end
