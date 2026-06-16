@@ -1,14 +1,12 @@
--- Extend pylsp to also attach to snakemake files.
--- No dedicated Snakemake LSP exists; pylsp covers the Python
--- portions of .smk files which is the majority of what's useful.
+-- Standard Python files: full ruff linting
 vim.lsp.config('pylsp', {
-    filetypes = { 'python', 'snakemake' },
+    filetypes = { 'python' },
     settings = {
         pylsp = {
             plugins = {
+                pyflakes        = { enabled = false },
                 pycodestyle     = { enabled = false },
                 flake8          = { enabled = false },
-                pyflakes        = { enabled = false },
                 pylint          = { enabled = false },
                 ruff            = { enabled = true },
                 rope_autoimport = { enabled = true },
@@ -17,7 +15,27 @@ vim.lsp.config('pylsp', {
     },
 })
 
-vim.lsp.enable({ 'pylsp', 'bashls', 'r_language_server' })
+-- Snakemake files: same server, but ruff disabled since it
+-- can't parse the rule/input/output/conda/shell DSL syntax.
+-- Still gives hover, completion, and goto-def on the Python portions.
+vim.lsp.config('pylsp_snakemake', {
+    cmd = { 'pylsp' },
+    filetypes = { 'snakemake' },
+    settings = {
+        pylsp = {
+            plugins = {
+                pyflakes        = { enabled = false },
+                pycodestyle     = { enabled = false },
+                flake8          = { enabled = false },
+                pylint          = { enabled = false },
+                ruff            = { enabled = false },
+                rope_autoimport = { enabled = true },
+            },
+        },
+    },
+})
+
+vim.lsp.enable({ 'pylsp', 'pylsp_snakemake', 'bashls', 'r_language_server' })
 
 vim.diagnostic.config({
     virtual_text = true,   -- show message inline after the line
