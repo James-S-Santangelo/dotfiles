@@ -14,11 +14,13 @@ require("lazy").setup(
         {
             'nvim-treesitter/nvim-treesitter',
             lazy = false,
+            branch = 'main',
             build = ':TSUpdate',
             config = function()
                 -- New API: call install() directly instead of ensure_installed
                 require('nvim-treesitter').install({
                     'python', 'r', 'cpp', 'yaml', 'snakemake',
+                    'markdown', 'markdown_inline', "'html"
                 })
                 -- Enable highlighting via Neovim's built-in treesitter
                 vim.api.nvim_create_autocmd('FileType', {
@@ -82,6 +84,24 @@ require("lazy").setup(
         {
             'saghen/blink.cmp',
             version = '1.*',
+        },
+        -- Markdown rendering
+        {
+            'MeanderingProgrammer/render-markdown.nvim',
+            dependencies = {
+                'nvim-treesitter/nvim-treesitter',
+                'nvim-tree/nvim-web-devicons',
+            },
+            ft = { 'markdown' },
+            ---@module 'render-markdown'
+            ---@type render.md.UserConfig
+            opts = {
+                completions = { blink = { enabled = true } },
+                latex = { enabled = false },
+            },
+            keys = {
+                { '<leader>mr', '<cmd>RenderMarkdown toggle<cr>', desc = 'Toggle markdown render' },
+            },
         },
     },
     {
